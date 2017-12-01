@@ -1,94 +1,13 @@
 <!DOCTYPE html>
+<!--Author Karle Sleith
+	Refrences-->
+<!--https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse -->
 <html lang="en">
 
- <script type="text/javascript">
-    var canvas, ctx, flag = false,
-        prevX = 0,
-        currX = 0,
-        prevY = 0,
-        currY = 0,
-        dot_flag = false;
-
-    var x = "white",
-        y = 2;
-    
-    function init() {
-        canvas = document.getElementById('myCanvas');
-        ctx = canvas.getContext("2d");
-        w = canvas.width;
-        h = canvas.height;
-    
-        canvas.addEventListener("mousemove", function (e) {
-            findxy('move', e)
-        }, false);
-        canvas.addEventListener("mousedown", function (e) {
-            findxy('down', e)
-        }, false);
-        canvas.addEventListener("mouseup", function (e) {
-            findxy('up', e)
-        }, false);
-        canvas.addEventListener("mouseout", function (e) {
-            findxy('out', e)
-        }, false);
-    }
-    
- 
-    
-    function draw() {
-        ctx.beginPath();
-        ctx.moveTo(prevX, prevY);
-        ctx.lineTo(currX, currY);
-        ctx.strokeStyle = x;
-        ctx.lineWidth = y;
-        ctx.stroke();
-        ctx.closePath();
-    }
-
-    
-    function save() {
-        document.getElementById("canvasimg").style.border = "2px solid";
-        var dataURL = canvas.toDataURL();
-        document.getElementById("canvasimg").src = dataURL;
-        document.getElementById("canvasimg").style.display = "inline";
-    }
-    
-    function findxy(res, e) {
-        if (res == 'down') {
-            prevX = currX;
-            prevY = currY;
-            currX = e.clientX - canvas.offsetLeft;
-            currY = e.clientY - canvas.offsetTop;
-    
-            flag = true;
-            dot_flag = true;
-            if (dot_flag) {
-                ctx.beginPath();
-                ctx.fillStyle = x;
-                ctx.fillRect(currX, currY, 2, 2);
-                ctx.closePath();
-                dot_flag = false;
-            }
-        }
-        if (res == 'up' || res == "out") {
-            flag = false;
-        }
-        if (res == 'move') {
-            if (flag) {
-                prevX = currX;
-                prevY = currY;
-                currX = e.clientX - canvas.offsetLeft;
-                currY = e.clientY - canvas.offsetTop;
-                draw();
-            }
-        }
-    }
-    </script>
-    
 	<body onload="init()">
-
+	
         <img id="canvasimg" style="position:absolute; top:20%; left:15%; background:black;" style="display:none;">
       
-
   <head>
 
     <meta charset="utf-8">
@@ -124,13 +43,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <a class="navbar-brand js-scroll-trigger" style="position: right:10%">Karle Sleith G00324919</a>
             </li>
           </ul>
         </div>
@@ -142,11 +55,13 @@
       <div class="container">
 	  <canvas id="myCanvas" width="400" height="400"
 		style="border:1px solid #000000; background-color:black;position:left; left: 20px;
-		padding: 10px;" >
+		padding: 0px;" >
 		</canvas>
-		 
         <div class="intro-text">
-		<input type="button" value="save" id="btn" size="30" onclick="save()">
+		<input type="button" value="Save" id="btn" size="30" onclick="save()">
+		 <input type="button" value="Clear" id="clr" size="23" onclick="erase()">
+		 <input type="button" value="Upload" id="upl" size="23" onclick="save()">
+		<script type="text/javascript" src="/static/js/drawCanvas.js"></script>
           <span class="name">MINST Data Analysis</span>
           <hr class="star-light">
           <span class="skills">MNIST Tensorflow Project - December 2017</span>
