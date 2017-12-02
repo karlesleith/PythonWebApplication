@@ -72,3 +72,7 @@ model.fit_generator(train_gen,steps_per_epoch=60000//64, epochs=5, validation_da
 acc = (x_test,y_test)
 print()
 print('Accuracy', acc[1])
+
+## Save the model to a file for later use.
+model.save("mnist_model.h5")
+# Load the model again with: model = load_model("mnist_model.h5")
