@@ -1,6 +1,9 @@
 # PythonWebApplication
 Project Assessment for Emerging Technologies 2017 
 
+![alt text](https://github.com/karlesleith/PythonWebApplication/blob/master/static/ReadmeImg.PNG)
+
+
 ## Overview
 In this project I will create a web application in Python using Flask to recognise digits in images. Users will be able to visit the web application through their browser,and draw an image containing a single digit [1-10], and the web application will respond with the digit contained in the image. The application uses "Keras" with a Tensorflow backend. The application runs with an accuracy of 99% when reconising digits. This web application will be used as an "Emerging Technologies" Project, due December 4th 2017.
 
