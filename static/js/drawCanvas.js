@@ -1,3 +1,8 @@
+/*
+Author: Karle Sleith 
+Ref: https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mouse
+*/
+
  var canvas, ctx, flag = false,
         prevX = 0,
         currX = 0,
@@ -8,13 +13,14 @@
     var x = "white",
         y = 10;
     
+    //Initilizing the canavas object so we can hand draw a digit on the site
     function init() {
         canvas = document.getElementById('myCanvas');
 		outputImg = document.getElementById('canvasimg');
         ctx = canvas.getContext("2d");
         w = canvas.width;
         h = canvas.height;
-    
+
         canvas.addEventListener("mousemove", function (e) {
             findxy('move', e)
         }, false);
@@ -30,7 +36,7 @@
     }
     
  
-    
+    //Drawing the Image on the canvas 
     function draw() {
         ctx.beginPath();
         ctx.moveTo(prevX, prevY);
@@ -41,19 +47,27 @@
         ctx.closePath();
     }
 
-    
+    //Save Image as PNG & Sending an AJAX Call to JSON
     function save() {
-        outputImg.style.border = "2px solid";
-        var dataURL = canvas.toDataURL();
-		var saveImg = canvas.toDataURL('image/png');
-		outputImg.src = dataURL;
-		outputImg.style.display = "inline";
-		
+        //Saving the image to a data URL
+        saveImg = canvas.toDataURL('image/png');
+
+        //Ajax function that passes the image App.py
+        $.ajax({   
+            url: '/predict',
+            method: 'POST',
+            data: saveImg ,
+            success: function(data){
+                $('#result').text(' I Guessed: '+data);
+            
+            },error: function(err){   
+                console.log(err);
+            }
+        });   
 		
     }
-    
-	
-	
+
+    //finding the co-ordinates for the mouse cursor
     function findxy(res, e) {
         if (res == 'down') {
             prevX = currX;
@@ -84,12 +98,14 @@
             }
         }
     }
-	
+    
+    //Clearing the canvas 
 	function erase() {
         var m = confirm("Do you want to clear the image?");
         if (m) {
             ctx.clearRect(0, 0, w, h);
             document.getElementById("canvasimg").style.display = "none";
+           
         }
     }
 	

@@ -5,9 +5,10 @@
 <html lang="en">
 
 	<body onload="init()">
-	
-        <img id="canvasimg" style="position:absolute; top:20%; left:15%; background:black;" style="display:none;">
-      
+  
+ <!--   Used in Testing the Cavas was being saved 
+  <img id="canvasimg" style="position:absolute; top:20%; left:15%; background:black;" style="display:none;">
+ -->
   <head>
 
     <meta charset="utf-8">
@@ -24,7 +25,9 @@
     <link href="/static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
+    <!--Calling Googles Api for AJAX calls-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
     <!-- Custom styles for this template -->
     <link href="/static/css/freelancer.min.css" rel="stylesheet">
 
@@ -54,18 +57,28 @@
     <header class="masthead">
       <div class="container">
 	  <canvas id="myCanvas" width="400" height="400"
-		style="border:1px solid #000000; background-color:black;position:left; left: 20px;
-		padding: 0px;" >
-		</canvas>
-        <div class="intro-text">
+		style="border:1px solid #000000 ;position:left; left: 20px;
+		padding: 0px; background:#000000" >
+    </canvas>
+    <script>
+      //Creating The Background for the Canvas Imgs
+      var c = document.getElementById("myCanvas");
+      var ctx = c.getContext("2d");
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
+      </script>
+
+     <div class="intro-text">
 		<input type="button" value="Save" id="btn" size="30" onclick="save()">
-		 <input type="button" value="Clear" id="clr" size="23" onclick="erase()">
-		 <form id = "upload_form" action="{{url_for('upload_file')}}" method="POST" enctype="multipart/form-data">
+     <input type="button" value="Clear" id="clr" size="23" onclick="erase()">
+		<!-- <form id = "upload_form" action="{{url_for('upload_file')}}" method="POST" enctype="multipart/form-data">
 		 <input type ="file" name = "filename" accept="image/*" multiple>
 		 <input type="submit" value="Upload" size="23" >
-		 </form>
+     </form> -->
+		
+		
 		<script type="text/javascript" src="/static/js/drawCanvas.js"></script>
-          <span class="name">MINST Data Analysis</span>
+          <span class="name" id = "result">MINST Data Analysis</span>
           <hr class="star-light">
           <span class="skills">MNIST Tensorflow Project - December 2017</span>
         </div>
