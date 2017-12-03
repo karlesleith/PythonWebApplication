@@ -72,7 +72,8 @@ def upload_file():
         print(output)
         responce = np.array_str(np.argmax(output,axis=1))
         print("THE ANSWER is: ",responce)
-        return responce
+        #Stripping the brackets from the str
+        return responce.strip("[]")
 #run on default
 if __name__ == "__main__":
 		app.run(debug=True)

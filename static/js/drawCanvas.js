@@ -58,7 +58,7 @@ Ref: https://stackoverflow.com/questions/2368784/draw-on-html5-canvas-using-a-mo
             method: 'POST',
             data: saveImg ,
             success: function(data){
-                $('#result').text(' I Guessed: '+data);
+                $('#result').text(' Is the answer : '+data+" ?");
             
             },error: function(err){   
                 console.log(err);
